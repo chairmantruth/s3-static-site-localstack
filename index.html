@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empat-Caiquo Medical Centre - Premier Medical Care</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            scroll-padding-top: 90px; /* Offset for fixed header */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(180deg, #ffffff 0%, #f4fff9 100%);
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #4fce8e 0%, #1e5a3f 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.2rem;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-tagline {
+            font-size: 0.75rem;
+            font-style: italic;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-links a:not(.btn-appointment)::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:not(.btn-appointment):hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translateY(10px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translateY(-10px);
+        }
+
+        .btn-appointment {
+            background: linear-gradient(135deg, #ff8f8f 0%, #ff6b6b 100%);
+            padding: 0.6rem 1.8rem;
+            border-radius: 999px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.2);
+            font-weight: 500;
+        }
+
+        .btn-appointment:hover {
+            background: linear-gradient(135deg, #ff7a7a 0%, #ff5252 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-appointment::after {
+            display: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 82px;
+            background: linear-gradient(135deg, #ffffff 0%, #f0fef6 100%);
+            color: #1e5a3f;
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(45, 134, 89, 0.05) 0%, rgba(30, 90, 63, 0.08) 100%);
+            clip-path: polygon(30% 0%, 100% 0%, 100% 100%, 0% 100%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: #1e5a3f;
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #2d8659;
+            line-height: 1.6;
+        }
+
+        .hero-image {
+            position: relative;
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(30, 90, 63, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hero-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 70px rgba(30, 90, 63, 0.25);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2d8659 0%, #4fce8e 100%);
+            color: white;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 999px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 14px rgba(45, 134, 89, 0.3);
+            position: relative;
+            overflow: hidden;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .btn-primary:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1e5a3f 0%, #2d8659 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(45, 134, 89, 0.5);
+        }
+
+        /* Services Section */
+        .services {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 3rem 2rem;
+            background: linear-gradient(180deg, #ffffff 0%, #f0fef6 100%);
+            border-radius: 24px;
+            box-shadow: 0 12px 30px rgba(30, 90, 63, 0.08);
+            animation: fadeUp 0.9s ease both;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2d8659;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-slider {
+            position: relative;
+        }
+
+        .service-viewport {
+            overflow: visible;
+            padding: 4rem 3.25rem;
+            position: relative;
+            height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-viewport::-webkit-scrollbar {
+            display: none;
+        }
+
+        .service-viewport {
+            scrollbar-width: none;
+        }
+
+        .service-track {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-slide {
+            position: absolute;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .service-slide.active {
+            opacity: 1;
+            z-index: 3;
+            transform: translateX(0) scale(1);
+            pointer-events: auto;
+        }
+
+        .service-slide.prev {
+            opacity: 0.7;
+            z-index: 2;
+            transform: translateX(-360px) scale(0.85);
+        }
+
+        .service-slide.next {
+            opacity: 0.7;
+            z-index: 2;
+            transform: translateX(360px) scale(0.85);
+        }
+
+        .service-slide.hidden {
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .service-card--wide {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(30, 90, 63, 0.2);
+            width: 480px;
+            transform-origin: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card--wide:hover {
+            box-shadow: 0 25px 80px rgba(30, 90, 63, 0.3);
+        }
+
+        .service-media {
+            width: 100%;
+            height: 280px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 12px 24px rgba(30, 90, 63, 0.15);
+            position: relative;
+        }
+
+        .service-media::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(30, 90, 63, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card--wide:hover .service-media::after {
+            opacity: 1;
+        }
+
+        .service-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card--wide:hover .service-media img {
+            transform: scale(1.08);
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: none;
+            background: white;
+            color: #2d8659;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(30, 90, 63, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 10;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .slider-btn:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 12px 28px rgba(30, 90, 63, 0.25);
+            background: #2d8659;
+            color: white;
+        }
+
+        .slider-btn.prev {
+            left: 1.5rem;
+        }
+
+        .slider-btn.next {
+            right: 1.5rem;
+        }
+
+        .service-card {
+            background: linear-gradient(180deg, #ffffff 0%, #f8fffb 100%);
+            border: 1px solid rgba(45, 134, 89, 0.15);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #2d8659 0%, #4fce8e 100%);
+            transform: scaleX(0);
+            transition: transform 0.35s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 32px rgba(30, 90, 63, 0.15);
+            border-color: rgba(45, 134, 89, 0.4);
+        }
+
+        .specialists {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 3rem 2rem;
+            background: linear-gradient(180deg, #f0fef6 0%, #ffffff 100%);
+            border-radius: 24px;
+            box-shadow: 0 12px 30px rgba(30, 90, 63, 0.08);
+            animation: fadeUp 0.9s ease both;
+        }
+
+        .specialist-image {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            box-shadow: 0 8px 16px rgba(30, 90, 63, 0.12);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover .specialist-image {
+            transform: scale(1.05) translateY(-4px);
+            box-shadow: 0 12px 24px rgba(30, 90, 63, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            color: #2d8659;
+            margin-bottom: 0.5rem;
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(180deg, #f0fef6 0%, #ffffff 100%);
+            padding: 3rem 2rem;
+            animation: fadeUp 0.9s ease both;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .about-text h2 {
+            color: #2d8659;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+        }
+
+        .about-image-container {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+
+        .about-image-slider {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+        }
+
+        .about-slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .about-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(30, 90, 63, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .about-slide.active img:hover {
+            transform: scale(1.02) translateY(-4px);
+            box-shadow: 0 12px 30px rgba(30, 90, 63, 0.25);
+        }
+
+        .about-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.9);
+            color: #2d8659;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(30, 90, 63, 0.2);
+            transition: all 0.3s ease;
+            z-index: 10;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .about-nav-btn:hover {
+            transform: translateY(-50%) scale(1.1);
+            background: #2d8659;
+            color: white;
+        }
+
+        .about-nav-btn.prev {
+            left: 1rem;
+        }
+
+        .about-nav-btn.next {
+            right: 1rem;
+        }
+
+        .about-dots {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+
+        .about-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .about-dot.active {
+            background: white;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        .testimonials {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 3rem 2rem;
+            background: linear-gradient(180deg, #ffffff 0%, #f0fef6 100%);
+            border-radius: 24px;
+            box-shadow: 0 12px 30px rgba(30, 90, 63, 0.08);
+            animation: fadeUp 0.9s ease both;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(180deg, #ffffff 0%, #f8fffb 100%);
+            border: 1px solid rgba(45, 134, 89, 0.15);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(30, 90, 63, 0.08);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-size: 5rem;
+            color: rgba(45, 134, 89, 0.06);
+            font-family: Georgia, serif;
+            line-height: 1;
+            z-index: 0;
+        }
+
+        .testimonial-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(30, 90, 63, 0.18);
+            border-color: rgba(45, 134, 89, 0.3);
+        }
+
+        .testimonial-quote {
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            font-style: italic;
+            color: #333;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            color: #1e5a3f;
+        }
+
+        .footer-list a,
+        .footer-list a:visited {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.25s ease, color 0.25s ease;
+        }
+
+        .footer-list a:hover {
+            color: #e6fff2;
+            border-color: #e6fff2;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2d8659 0%, #4fce8e 100%);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .social-link::after {
+            content: attr(data-handle);
+            position: absolute;
+            bottom: -38px;
+            background: #1e5a3f;
+            color: white;
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            opacity: 0;
+            transform: translateY(-6px);
+            pointer-events: none;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(30, 90, 63, 0.2);
+        }
+
+        .social-link:hover::after {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1e5a3f 0%, #2d8659 100%);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            align-items: start;
+        }
+
+
+        .chat-fab {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2d8659 0%, #4fce8e 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            box-shadow: 0 14px 30px rgba(30, 90, 63, 0.25);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 200;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 14px 30px rgba(30, 90, 63, 0.25), 0 0 0 0 rgba(45, 134, 89, 0.4);
+            }
+            50% {
+                box-shadow: 0 14px 30px rgba(30, 90, 63, 0.25), 0 0 0 10px rgba(45, 134, 89, 0);
+            }
+        }
+
+        .chat-fab:hover {
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: 0 20px 40px rgba(30, 90, 63, 0.35);
+            animation: none;
+        }
+
+        .footer-brand img {
+            height: 44px;
+            width: auto;
+            background: white;
+            border-radius: 8px;
+            padding: 0.35rem 0.5rem;
+        }
+
+        .footer-title {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-list {
+            list-style: none;
+        }
+
+        .footer-list li {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            opacity: 0.85;
+            font-size: 0.9rem;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-image {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 1rem;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: linear-gradient(180deg, #2d8659 0%, #1e5a3f 100%);
+                flex-direction: column;
+                gap: 0;
+                padding: 5rem 2rem 2rem;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2);
+                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 1000;
+                align-items: flex-start;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                padding: 1rem 0;
+            }
+
+            .nav-links a {
+                display: block;
+                width: 100%;
+                padding: 0.5rem 0;
+                font-size: 1.1rem;
+            }
+
+            .btn-appointment {
+                background: linear-gradient(135deg, #ff8f8f 0%, #ff6b6b 100%);
+                padding: 0.75rem 1.5rem;
+                text-align: center;
+                display: block;
+                margin-top: 1rem;
+            }
+
+            .hero {
+                padding: 3rem 1.5rem;
+                margin-top: 70px;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-text p {
+                font-size: 1rem;
+            }
+
+            .hero-image {
+                height: 300px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image-container {
+                height: 240px;
+            }
+
+            .about-nav-btn {
+                width: 36px;
+                height: 36px;
+            }
+
+            .service-viewport {
+                padding: 3rem 1rem;
+                height: 480px;
+            }
+
+            .service-card--wide {
+                width: 340px;
+            }
+
+            .service-slide.prev {
+                transform: translateX(-200px) scale(0.75);
+            }
+
+            .service-slide.next {
+                transform: translateX(200px) scale(0.75);
+            }
+
+            .specialist-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .btn-primary {
+                width: 100%;
+                padding: 0.9rem 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 0.75rem 0;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+
+            .logo-tagline {
+                font-size: 0.65rem;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .hero-text h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-text p {
+                font-size: 0.95rem;
+            }
+
+            .hero-image {
+                height: 240px;
+            }
+
+            .btn-primary {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.95rem;
+            }
+
+            .service-viewport {
+                height: 420px;
+            }
+
+            .service-card--wide {
+                width: 280px;
+                padding: 1.5rem;
+            }
+
+            .service-slide.prev {
+                transform: translateX(-160px) scale(0.7);
+            }
+
+            .service-slide.next {
+                transform: translateX(160px) scale(0.7);
+            }
+
+            .specialist-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .specialist-card {
+                padding: 1.2rem;
+            }
+
+            .about-image-container {
+                height: 200px;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            .hero-text h1 {
+                font-size: 4rem;
+            }
+
+            .hero-image {
+                height: 450px;
+            }
+
+            nav, .hero-content, .services, .about, .specialists, .testimonials {
+                max-width: 1400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="logo.png" alt="Empat-Caiquo Medical Centre Logo">
+                <span class="logo-tagline">We care</span>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#specialists">Specialists</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#footer">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Your Health, Our Priority</h1>
+                <p>Excellence in Medical Care, Compassion in Every Moment. Experience personalized healthcare with our team of dedicated professionals.</p>
+                <a href="#footer" class="btn-primary">Book Appointment</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&w=800&q=80" alt="Professional African Medical Doctor">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h2 class="section-title">Our Services</h2>
+        <div class="service-slider">
+            <button class="slider-btn prev" type="button" aria-label="Previous service">
+                &#10094;
+            </button>
+            <div class="service-viewport" id="serviceViewport">
+                <div class="service-track" id="serviceTrack">
+                    <div class="service-slide">
+                        <div class="service-card service-card--wide">
+                            <div class="service-media">
+                                <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80" alt="Emergency Care">
+                            </div>
+                            <div>
+                                <h3>Emergency Care</h3>
+                                <p>24/7 emergency department with highly trained medical professionals ready to assist you.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-slide">
+                        <div class="service-card service-card--wide">
+                            <div class="service-media">
+                                <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=80" alt="General Medicine">
+                            </div>
+                            <div>
+                                <h3>General Medicine</h3>
+                                <p>Comprehensive medical care for common health conditions and preventive services.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-slide">
+                        <div class="service-card service-card--wide">
+                            <div class="service-media">
+                                <img src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1200&q=80" alt="Hospital Beds">
+                            </div>
+                            <div>
+                                <h3>Hospital Beds</h3>
+                                <p>Comfortable inpatient facilities with attentive nursing and modern care.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-slide">
+                        <div class="service-card service-card--wide">
+                            <div class="service-media">
+                                <img src="https://images.unsplash.com/photo-1582719471137-c3967ffb1c42?auto=format&fit=crop&w=1200&q=80" alt="Laboratory">
+                            </div>
+                            <div>
+                                <h3>Laboratory</h3>
+                                <p>State-of-the-art diagnostics for accurate and timely test results.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-slide">
+                        <div class="service-card service-card--wide">
+                            <div class="service-media">
+                                <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?q=80&w=1450?auto=format&fit=crop&w=1200&q=80" alt="Vaccinations">
+                            </div>
+                            <div>
+                                <h3>Vaccinations</h3>
+                                <p>Complete immunization programs and vaccination services for all age groups.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-slide">
+                        <div class="service-card service-card--wide">
+                            <div class="service-media">
+                                <img src="https://images.unsplash.com/photo-1587745416684-47953f16f02f?auto=format&fit=crop&w=1200&q=80" alt="Ambulance Service">
+                            </div>
+                            <div>
+                                <h3>Ambulance Service</h3>
+                                <p>Fast and reliable ambulance service with trained paramedics and modern equipment.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-slide">
+                        <div class="service-card service-card--wide">
+                            <div class="service-media">
+                                <img src="https://images.unsplash.com/photo-1580281658629-6c686b7e96b0?auto=format&fit=crop&w=1200&q=80" alt="Emergency Care">
+                            </div>
+                            <div>
+                                <h3>Emergency Care</h3>
+                                <p>24/7 emergency department with highly trained medical professionals ready to assist you.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-slide">
+                        <div class="service-card service-card--wide">
+                            <div class="service-media">
+                                <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80" alt="General Medicine">
+                            </div>
+                            <div>
+                                <h3>General Medicine</h3>
+                                <p>Comprehensive medical care for common health conditions and preventive services.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-slide">
+                        <div class="service-card service-card--wide">
+                            <div class="service-media">
+                                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=80" alt="Hospital Beds">
+                            </div>
+                            <div>
+                                <h3>Hospital Beds</h3>
+                                <p>Comfortable inpatient facilities with attentive nursing and modern care.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-slide">
+                        <div class="service-card service-card--wide">
+                            <div class="service-media">
+                                <img src="https://images.unsplash.com/photo-1581595219315-a187dd40c322?auto=format&fit=crop&w=1200&q=80" alt="Laboratory">
+                            </div>
+                            <div>
+                                <h3>Laboratory</h3>
+                                <p>State-of-the-art diagnostics for accurate and timely test results.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-slide">
+                        <div class="service-card service-card--wide">
+                            <div class="service-media">
+                                <img src="https://images.unsplash.com/photo-1578496480157-697fc14d47f3?auto=format&fit=crop&w=1200&q=80" alt="Vaccinations">
+                            </div>
+                            <div>
+                                <h3>Vaccinations</h3>
+                                <p>Complete immunization programs and vaccination services for all age groups.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-slide">
+                        <div class="service-card service-card--wide">
+                            <div class="service-media">
+                                <img src="https://images.unsplash.com/photo-1504439468489-c8920d796a29?auto=format&fit=crop&w=1200&q=80" alt="Ambulance Service">
+                            </div>
+                            <div>
+                                <h3>Ambulance Service</h3>
+                                <p>Fast and reliable ambulance service with trained paramedics and modern equipment.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="slider-btn next" type="button" aria-label="Next service">
+                &#10095;
+            </button>
+        </div>
+    </section>
+
+    <!-- Specialists Section -->
+    <section id="specialists" class="specialists">
+        <h2 class="section-title">Specialist Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=400&q=80" alt="Physiotherapy" class="specialist-image">
+                <h3>Physiotherapy</h3>
+                <p>Personalized rehabilitation plans to restore mobility, strength, and function.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=400&q=80" alt="Obs & Gynae" class="specialist-image">
+                <h3>Obs &amp; Gynae</h3>
+                <p>Comprehensive women's health services, prenatal care, and gynecological support.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=400&q=80" alt="Surgeon" class="specialist-image">
+                <h3>Surgeon</h3>
+                <p>Experienced surgical care with modern techniques and patient-centered recovery.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=400&q=80" alt="Dietetics" class="specialist-image">
+                <h3>Dietetics</h3>
+                <p>Nutritional counseling and personalized diet plans for healthier living.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://img.freepik.com/free-photo/doctor-patient-ophthalmologist-s-office_23-2150923335.jpg?auto=format&fit=crop&w=1500&q=100" alt="Eye Care" class="specialist-image">
+                <h3>Eye Care</h3>
+                <p>Eye care services including screenings, consultations, and treatment support.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://wakeforestpediatrics.com/wp-content/uploads/2020/10/Choosing-a-Pediatrician-e1725903686403.jpeg?auto=format&fit=crop&w=400&q=80" alt="Pediatrics" class="specialist-image">
+                <h3>Pediatrics</h3>
+                <p>Dedicated care for infants, children, and adolescents in a welcoming environment.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=400&q=80" alt="Psychology" class="specialist-image">
+                <h3>Psychology</h3>
+                <p>Compassionate mental health support for individuals, families, and communities.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1581594549595-35f6edc7b762?auto=format&fit=crop&w=400&q=80" alt="ENT" class="specialist-image">
+                <h3>Ear, Nose &amp; Throat (ENT)</h3>
+                <p>Specialized care for ear, nose, throat conditions and hearing assessments.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2 class="section-title">Patient Reviews</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-quote">"The team was kind and professional throughout my visit. I felt heard and cared for from the moment I arrived."</p>
+                <p class="testimonial-name">Ama A., Tema</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-quote">"Clean facilities, quick service, and excellent staff. The doctors explained everything clearly."</p>
+                <p class="testimonial-name">Kwame N., Community Member</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-quote">"My family trusts Empat-Caiquo Medical Centre. Their care has always been compassionate and reliable."</p>
+                <p class="testimonial-name">Esi M., Parent</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>About Empat-Caiquo Medical Centre</h2>
+                <p>
+                    Empat-Caiquo Medical Centre has been dedicated to providing exceptional medical care and services to our community for over two decades. Our mission is to deliver quality healthcare with compassion and respect.
+                </p>
+                <p>
+                    Our team of experienced doctors, nurses, and healthcare professionals work around the clock to ensure every patient receives the best possible care and treatment.
+                </p>
+                <p>
+                    With modern facilities and advanced medical technology, we are committed to improving health outcomes and enhancing the quality of life for our patients.
+                </p>
+            </div>
+            <div class="about-image-container">
+                <div class="about-image-slider" id="aboutSlider">
+                    <div class="about-slide">
+                        <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80" alt="Hospital lobby">
+                    </div>
+                    <div class="about-slide">
+                        <img src="https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?auto=format&fit=crop&w=800&q=80" alt="Medical equipment">
+                    </div>
+                    <div class="about-slide">
+                        <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?auto=format&fit=crop&w=800&q=80" alt="Patient room">
+                    </div>
+                    <div class="about-slide">
+                        <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=800&q=80" alt="Medical professionals">
+                    </div>
+                </div>
+                <button class="about-nav-btn prev" type="button" aria-label="Previous image">&#10094;</button>
+                <button class="about-nav-btn next" type="button" aria-label="Next image">&#10095;</button>
+                <div class="about-dots" id="aboutDots"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="logo.png" alt="Empat-Caiquo Medical Centre Logo">
+                <p>Compassionate care, modern facilities, and a team dedicated to your wellness.</p>
+            </div>
+            <div>
+                <p class="footer-title">Contact</p>
+                <ul class="footer-list">
+                    <li>030 330 4484</li>
+                    <li>info@empatcaiquo.com</li>
+                    <li>
+                        <a href="https://share.google/jZb1bfJ4UJVRRQ1WS" target="_blank" rel="noopener">
+                            Adjacent SOS Children's Village, Hermann-Gmeiner Road, Tema
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <p class="footer-title">Hours</p>
+                <ul class="footer-list">
+                    <li>Open 24/7 (All Days)</li>
+                </ul>
+            </div>
+            <div>
+                <p class="footer-title">Connect</p>
+                <div class="social-links">
+                    <a class="social-link" href="https://www.facebook.com/emcaiquo" target="_blank" rel="noopener" data-handle="@emcaiquo" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.7V7.2c0-.7.5-1 1-1h1.8V3h-2.5C11.7 3 10 4.6 10 7.1v1.6H8v3h2V21h4v-9.3h2.6l.4-3H14z"></path></svg>
+                    </a>
+                    <a class="social-link" href="https://www.instagram.com/emcaiquo" target="_blank" rel="noopener" data-handle="@emcaiquo" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.3A4.7 4.7 0 1 0 16.7 12 4.7 4.7 0 0 0 12 7.3zm0 7.7A3 3 0 1 1 15 12a3 3 0 0 1-3 3zm5.9-7.9a1.1 1.1 0 1 1-1.1-1.1 1.1 1.1 0 0 1 1.1 1.1z"></path><path d="M17 3H7a4 4 0 0 0-4 4v10a4 4 0 0 0 4 4h10a4 4 0 0 0 4-4V7a4 4 0 0 0-4-4zm2.3 14a2.3 2.3 0 0 1-2.3 2.3H7A2.3 2.3 0 0 1 4.7 17V7A2.3 2.3 0 0 1 7 4.7h10A2.3 2.3 0 0 1 19.3 7z"></path></svg>
+                    </a>
+                    <a class="social-link" href="https://x.com/emcaiquo" target="_blank" rel="noopener" data-handle="@emcaiquo" aria-label="X">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 3h3.1l-6.8 7.8 8 10.2h-6.3l-4.9-6.1-5.3 6.1H3.6l7.3-8.3L3 3h6.4l4.4 5.6L18.9 3z"></path></svg>
+                    </a>
+                    <a class="social-link" href="https://www.tiktok.com/@emcaiquo" target="_blank" rel="noopener" data-handle="@emcaiquo" aria-label="TikTok">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.4 6.2c-1-1-1.6-2.4-1.7-3.9h-3.2v12.2c0 1.3-1 2.4-2.3 2.4s-2.3-1.1-2.3-2.4 1-2.4 2.3-2.4c.3 0 .6.1.9.2V9c-.3-.1-.6-.1-.9-.1-3 0-5.4 2.5-5.4 5.6s2.4 5.6 5.4 5.6 5.4-2.5 5.4-5.6V9.7c1.2.9 2.6 1.4 4.1 1.4V7.8c-.8 0-1.6-.3-2.2-.8z"></path></svg>
+                    </a>
+                    <a class="social-link" href="https://www.youtube.com/@emcaiquo" target="_blank" rel="noopener" data-handle="@emcaiquo" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 7.3s-.2-1.6-.9-2.3c-.9-.9-2-1-2.5-1.1C16.5 3.6 12 3.6 12 3.6h0s-4.5 0-8.1.3c-.5.1-1.6.2-2.5 1.1-.7.7-.9 2.3-.9 2.3S.2 9 .2 10.7v1.6c0 1.7.3 3.4.3 3.4s.2 1.6.9 2.3c.9.9 2.1.9 2.6 1 1.9.2 8 .3 8 .3s4.5 0 8.1-.3c.5-.1 1.6-.2 2.5-1.1.7-.7.9-2.3.9-2.3s.3-1.7.3-3.4v-1.6c0-1.7-.3-3.4-.3-3.4zM9.7 14.5V8.7l5.7 2.9-5.7 2.9z"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Empat-Caiquo Medical Centre. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <a class="chat-fab" id="chatFab" href="#footer" aria-label="Live chat and queries">
+        💬
+    </a>
+
+    <!-- Tawk.to Live Chat -->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/69a0d2385341ac1c36bdf017/1jie3abqg';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+
+        document.getElementById("chatFab")?.addEventListener("click", (e) => {
+            e.preventDefault();
+            if (typeof Tawk_API !== "undefined" && Tawk_API.maximize) {
+                Tawk_API.maximize();
+            }
+        });
+    </script>
+
+    <script>
+        (() => {
+            const track = document.getElementById("serviceTrack");
+            const slides = Array.from(document.querySelectorAll(".service-slide"));
+            const prevBtn = document.querySelector(".slider-btn.prev");
+            const nextBtn = document.querySelector(".slider-btn.next");
+
+            if (!track || slides.length === 0) {
+                return;
+            }
+
+            // Only use first 6 unique slides
+            const uniqueSlides = slides.slice(0, 6);
+            let currentIndex = 0;
+
+            const updateSlides = () => {
+                uniqueSlides.forEach((slide, i) => {
+                    slide.className = "service-slide";
+                    
+                    if (i === currentIndex) {
+                        slide.classList.add("active");
+                    } else if (i === (currentIndex - 1 + uniqueSlides.length) % uniqueSlides.length) {
+                        slide.classList.add("prev");
+                    } else if (i === (currentIndex + 1) % uniqueSlides.length) {
+                        slide.classList.add("next");
+                    } else {
+                        slide.classList.add("hidden");
+                    }
+                });
+            };
+
+            const next = () => {
+                currentIndex = (currentIndex + 1) % uniqueSlides.length;
+                updateSlides();
+            };
+
+            const prev = () => {
+                currentIndex = (currentIndex - 1 + uniqueSlides.length) % uniqueSlides.length;
+                updateSlides();
+            };
+
+            prevBtn?.addEventListener("click", prev);
+            nextBtn?.addEventListener("click", next);
+
+            // Auto-advance every 4 seconds
+            let autoInterval = setInterval(next, 4000);
+
+            track.addEventListener("mouseenter", () => {
+                clearInterval(autoInterval);
+            });
+
+            track.addEventListener("mouseleave", () => {
+                autoInterval = setInterval(next, 4000);
+            });
+
+            // Initialize
+            updateSlides();
+        })();
+
+        // About Section Image Slider
+        (() => {
+            const slider = document.getElementById("aboutSlider");
+            const slides = Array.from(document.querySelectorAll(".about-slide"));
+            const dotsContainer = document.getElementById("aboutDots");
+            const prevBtn = document.querySelector(".about-nav-btn.prev");
+            const nextBtn = document.querySelector(".about-nav-btn.next");
+
+            if (!slider || slides.length === 0) {
+                return;
+            }
+
+            let currentIndex = 0;
+
+            // Create dots
+            slides.forEach((_, i) => {
+                const dot = document.createElement("button");
+                dot.className = "about-dot";
+                dot.setAttribute("aria-label", `Go to image ${i + 1}`);
+                dot.addEventListener("click", () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = Array.from(dotsContainer.querySelectorAll(".about-dot"));
+
+            const updateSlides = () => {
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle("active", i === currentIndex);
+                });
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle("active", i === currentIndex);
+                });
+            };
+
+            const goToSlide = (index) => {
+                currentIndex = index;
+                updateSlides();
+                resetAutoPlay();
+            };
+
+            const next = () => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateSlides();
+            };
+
+            const prev = () => {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                updateSlides();
+            };
+
+            prevBtn?.addEventListener("click", () => {
+                prev();
+                resetAutoPlay();
+            });
+
+            nextBtn?.addEventListener("click", () => {
+                next();
+                resetAutoPlay();
+            });
+
+            // Auto-advance every 3 seconds
+            let autoInterval = setInterval(next, 3000);
+
+            const resetAutoPlay = () => {
+                clearInterval(autoInterval);
+                autoInterval = setInterval(next, 3000);
+            };
+
+            slider.addEventListener("mouseenter", () => {
+                clearInterval(autoInterval);
+            });
+
+            slider.addEventListener("mouseleave", () => {
+                autoInterval = setInterval(next, 3000);
+            });
+
+            // Initialize
+            updateSlides();
+        })();
+
+        // Mobile Menu Toggle
+        (() => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const navItems = document.querySelectorAll('.nav-links a');
+
+            if (!menuToggle || !navLinks) return;
+
+            // Toggle menu
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('active');
+                navLinks.classList.toggle('active');
+                document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+            });
+
+            // Close menu when clicking nav items
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    menuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!navLinks.contains(e.target) && !menuToggle.contains(e.target) && navLinks.classList.contains('active')) {
+                    menuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Close menu on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                    menuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        })();
+
+        // Add scroll-based header shadow
+        (() => {
+            const header = document.querySelector('header');
+            if (!header) return;
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+                } else {
+                    header.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.1)';
+                }
+            });
+        })();
+
+        // Add intersection observer for fade-in animations
+        (() => {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe sections
+            document.querySelectorAll('.services, .specialists, .about, .testimonials').forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+        })();
+    </script>
+</body>
+</html>
